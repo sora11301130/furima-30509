@@ -23,6 +23,7 @@ items テーブル
 | cost               | string           | null:false                   |
 | place              | text             | null:false                   |
 | plan               | text             | null:false                   |
+| price              | string           | null:false                   |
 
 -has_one :users
 -has_one :comments
