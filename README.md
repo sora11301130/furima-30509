@@ -4,11 +4,11 @@ users テーブル
 | email              | string           | null:false       |
 | password           | string           | null:false       |
 | nickname           | string           | null:false       |
-| first name         | text             | null:false       |
-| family name        | text             | null:false       |
-| reading first name | text             | null:false       |
-| reading family name| text             | null:false       |
-| birthday           | string           | null:false       |
+| first name         | string           | null:false       |
+| family name        | string           | null:false       |
+| reading first name | string           | null:false       |
+| reading family name| string           | null:false       |
+| birthday           | date             | null:false       |
 
 -has_many :items
 -has_many :comments
@@ -18,11 +18,11 @@ items テーブル
 | -------------------| -----------------| -----------------------------|
 | title              | string           | null:false                   |
 | user               | reference        | null:false, foreign_key:true |
-| status             | text             | null:false                   |
-| category           | text             | null:false                   |
-| cost               | string           | null:false                   |
-| place              | text             | null:false                   |
-| plan               | text             | null:false                   |
+| status             | integer          | null:false                   |
+| category           | integer          | null:false                   |
+| cost               | integer          | null:false                   |
+| place              | integer          | null:false                   |
+| plan               | integer          | null:false                   |
 | price              | string           | null:false                   |
 
 -has_one :users
