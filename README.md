@@ -12,21 +12,25 @@ users テーブル
 
 -has_many :items
 -has_many :comments
+-has_one  :buy
+-has_one :sending_destination
 
 items テーブル
 |  Column            |  Type            |  Options                     |
 | -------------------| -----------------| -----------------------------|
 | title              | string           | null:false                   |
 | user               | reference        | null:false, foreign_key:true |
-| status             | integer          | null:false                   |
-| category           | integer          | null:false                   |
-| cost               | integer          | null:false                   |
-| place              | integer          | null:false                   |
-| plan               | integer          | null:false                   |
-| price              | string           | null:false                   |
+| status_id          | integer          | null:false                   |
+| category_id        | integer          | null:false                   |
+| cost_id            | integer          | null:false                   |
+| place_id           | integer          | null:false                   |
+| plan_id            | integer          | null:false                   |
+| price_id           | integer          | null:false                   |
 
 -has_one :users
 -has_one :comments
+-has_one :buy
+-has_one :sending_destination
 
 comments テーブル
 |  Column            |  Type            |  Options                     |
@@ -37,3 +41,39 @@ comments テーブル
 
 -has_one :users
 -has_one :items
+-has_one :buy
+-has_one :sending_destination
+
+buy テーブル
+|  Column            |  Type            |  Options                     |
+| -------------------| -----------------| -----------------------------|
+| title              | string           | null:false                   |
+| user               | reference        | null:false, foreign_key:true |
+| status_id          | integer          | null:false                   |
+| category_id        | integer          | null:false                   |
+| cost_id            | integer          | null:false                   |
+| place_id           | integer          | null:false                   |
+| plan_id            | integer          | null:false                   |
+| price_id           | integer          | null:false                   |
+-has_one :users
+-has_one :items
+-has_one :sending_destination
+
+
+sending_destination テーブル
+|  Column                      |  Type            |  Options                     |
+| -----------------------------| -----------------| -----------------------------|
+| destination_first_name       | string           | null:false                   |
+| destination_family_name      | string           | null:false                   |
+| destination_first_name_kana  | string           | null:false                   |
+| destination_family_name_kana | string           | null:false                   |
+| post_code                    | integer(7)       | null:false                   |
+| prefecture_code              | integer          | null:false                   |
+| city                         | string           | null:false                   |
+| house_number                 | string           | null:false                   |
+| build_number                 | string           | null:false                   |
+| phone_number                 | string           | null:false                   |
+
+-has_one :users
+-has_one :items
+-has_one :buy
