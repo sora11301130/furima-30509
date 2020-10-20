@@ -13,6 +13,7 @@ users テーブル
 -has_many :items
 -has_many :comments
 -has_one :sending_destination
+-has_many :orders
 
 items テーブル
 |  Column            |  Type            |  Options                     |
@@ -26,9 +27,10 @@ items テーブル
 | plan_id            | integer          | null:false                   |
 | price_id           | integer          | null:false                   |
 
--belongs_to :users
--has_one :comments
+-belongs_to :user
+-has_many :comments
 -has_one :sending_destination
+-has_one :order
 
 comments テーブル
 |  Column            |  Type            |  Options                     |
@@ -37,12 +39,12 @@ comments テーブル
 | user               | reference        | null:false, foreign_key:true |
 | item               | reference        | null:false, foreign_key:true |
 
--has_one :users
--has_one :items
+-belongs_to :user
+-has_one :item
 -has_one :sending_destination
 
 
-sending_destination テーブル
+sending_destinations テーブル
 |  Column                      |  Type            |  Options                     |
 | -----------------------------| -----------------| -----------------------------|
 | post_code                    | string(7)        | null:false                   |
@@ -52,5 +54,14 @@ sending_destination テーブル
 | build_number                 | string           |                              |
 | phone_number                 | string           | null:false                   |
 
--has_one :users
--has_one :items
+-belongs_to :user
+-has_one :item
+
+
+orders テーブル
+|  Column                      |  Type            |  Options                     |
+| -----------------------------| -----------------| -----------------------------|
+| users                        | reference        | null:false, foreign_key:true |
+| items                        | reference        | null:false, foreign_key:true |
+-belongs_to :user
+-has_one :item
