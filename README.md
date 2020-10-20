@@ -1,21 +1,20 @@
-users テーブル
+## users テーブル
 |  Column            |  Type            |  Options         |
 | -------------------| -----------------| -----------------|
 | email              | string           | null:false       |
 | password           | string           | null:false       |
 | nickname           | string           | null:false       |
-| first name         | string           | null:false       |
-| family name        | string           | null:false       |
-| reading first name | string           | null:false       |
-| reading family name| string           | null:false       |
+| first_name         | string           | null:false       |
+| family_name        | string           | null:false       |
+| reading_first_name | string           | null:false       |
+| reading_family_name| string           | null:false       |
 | birthday           | date             | null:false       |
 
 -has_many :items
 -has_many :comments
--has_one :sending_destination
 -has_many :orders
 
-items テーブル
+## items テーブル
 |  Column            |  Type            |  Options                     |
 | -------------------| -----------------| -----------------------------|
 | title              | string           | null:false                   |
@@ -23,16 +22,16 @@ items テーブル
 | status_id          | integer          | null:false                   |
 | category_id        | integer          | null:false                   |
 | cost_id            | integer          | null:false                   |
-| place_id           | integer          | null:false                   |
+| prefecture_code_id | integer          | null:false                   |
 | plan_id            | integer          | null:false                   |
 | price              | integer          | null:false                   |
+| item_description   | text             | null:false                   |
 
 -belongs_to :user
 -has_many :comments
--has_one :sending_destination
 -has_one :order
 
-comments テーブル
+## comments テーブル
 |  Column            |  Type            |  Options                     |
 | -------------------| -----------------| -----------------------------|
 | text               | text             | null:false                   |
@@ -40,11 +39,11 @@ comments テーブル
 | item               | reference        | null:false, foreign_key:true |
 
 -belongs_to :user
--has_one :item
+-belongs_to :item
 -has_one :sending_destination
 
 
-sending_destinations テーブル
+## sending_destinations テーブル
 |  Column                      |  Type            |  Options                     |
 | -----------------------------| -----------------| -----------------------------|
 | post_code                    | string(7)        | null:false                   |
@@ -53,15 +52,18 @@ sending_destinations テーブル
 | house_number                 | string           | null:false                   |
 | build_number                 | string           |                              |
 | phone_number                 | string           | null:false                   |
+| orders                       | reference        | null:false, foreign_key:true |
 
 -belongs_to :user
--has_one :item
+-belongs_to :item
 
 
-orders テーブル
+## orders テーブル
 |  Column                      |  Type            |  Options                     |
 | -----------------------------| -----------------| -----------------------------|
-| users                        | reference        | null:false, foreign_key:true |
-| items                        | reference        | null:false, foreign_key:true |
+| user                         | reference        | null:false, foreign_key:true |
+| item                         | reference        | null:false, foreign_key:true |
+
 -belongs_to :user
--has_one :item
+-belongs_to :item
+-has_one :sending_destination
