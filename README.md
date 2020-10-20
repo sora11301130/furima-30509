@@ -25,7 +25,7 @@ items テーブル
 | cost_id            | integer          | null:false                   |
 | place_id           | integer          | null:false                   |
 | plan_id            | integer          | null:false                   |
-| price_id           | integer          | null:false                   |
+| price              | integer          | null:false                   |
 
 -belongs_to :user
 -has_many :comments
