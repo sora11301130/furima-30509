@@ -54,7 +54,7 @@
 | phone_number                 | string           | null:false                   |
 | orders                       | reference        | null:false, foreign_key:true |
 
--has_many :orders
+-belongs_to :order
 
 
 ## orders テーブル
