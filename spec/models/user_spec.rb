@@ -55,10 +55,28 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
+      it "emailに@を含んでいない場合登録できない" do
+        @user.email = "kikikikigmail.com"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
+      it "nicknameが空では登録できない" do
+        @user.nickname = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Nickname can't be blank")
+      end
+
       it "family_nameが空だと登録できない" do
         @user.family_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Family name can't be blank")
+      end
+
+      it "family_nameが全角ではない場合登録できない" do
+        @user.family_name = "huhu"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name 全角文字を使用してください")
       end
 
       it "first_nameが空だと登録できない" do
@@ -67,10 +85,22 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
+      it "first_nameが全角ではない場合登録できない" do
+        @user.first_name = "huhuhu"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name 全角文字を使用してください")
+      end
+
       it "reading_family_nameが空だと登録できない" do
         @user.reading_family_name = ""
         @user.valid?
         expect(@user.errors.full_messages).to include("Reading family name can't be blank")
+      end
+
+      it "reading_family_nameが全角ではない場合登録できない" do
+        @user.reading_family_name = "huhuhu"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Reading family name 全角文字を使用してください")
       end
 
       it "reading_family_nameが存在してもreading_first_nameが空だと登録できない" do
@@ -78,6 +108,20 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Reading first name can't be blank")
       end
+
+      it "reading_first_nameが全角ではない場合登録できない" do
+        @user.reading_first_name = "huhuhu"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Reading first name 全角文字を使用してください")
+      end
+
+      it "生年月日が空の場合登録できない" do
+        @user.birthday = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
+      end
+
+
 
     end
  end
