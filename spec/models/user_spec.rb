@@ -41,6 +41,20 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)", "Password は、不正な値です。")
       end
 
+      it "passwordが数字のみの場合登録できない" do
+        @user.password = "123456"
+        @user.password_confirmation = "123456"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password は、不正な値です。")
+      end
+
+      it "passwordが英字のみの場合登録できない" do
+        @user.password = "abcdef"
+        @user.password_confirmation = "abcdef"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password は、不正な値です。")
+      end
+
       it "passwordとpassword_confirmationの値が一致しなければ登録できない" do
         @user.password = "aaa123"
         @user.password_confirmation = "aaa1123"
@@ -100,7 +114,7 @@ RSpec.describe User, type: :model do
       it "reading_family_nameが全角ではない場合登録できない" do
         @user.reading_family_name = "huhuhu"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Reading family name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include("Reading family name 全角カタカナを使用してください")
       end
 
       it "reading_family_nameが存在してもreading_first_nameが空だと登録できない" do
@@ -112,7 +126,7 @@ RSpec.describe User, type: :model do
       it "reading_first_nameが全角ではない場合登録できない" do
         @user.reading_first_name = "huhuhu"
         @user.valid?
-        expect(@user.errors.full_messages).to include("Reading first name 全角文字を使用してください")
+        expect(@user.errors.full_messages).to include("Reading first name 全角カタカナを使用してください")
       end
 
       it "生年月日が空の場合登録できない" do
@@ -120,6 +134,8 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
+
+ 
 
 
 
