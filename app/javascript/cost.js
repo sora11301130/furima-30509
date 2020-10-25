@@ -8,4 +8,4 @@ function cost  (){
        profit.innerHTML = (price.value - tax )
   });
 }
-window.addEventListener('', cost);
+window.addEventListener('keyup', cost);
