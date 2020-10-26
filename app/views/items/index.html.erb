@@ -132,6 +132,7 @@
           <li class='list'>
           <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
+            <% link_to item.image, item_path(item) %>
 
           <%# 商品が売れていればsold outを表示しましょう %>
             <div class='sold-out'>
@@ -142,7 +143,7 @@
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
-              <%= item.title %>
+              <%= link_to item.title, item_path(item), class: "item-name" %>
             </h3>
             <div class='item-price'>
               <span><%= item.price %>円<br>(税込み)</span>
