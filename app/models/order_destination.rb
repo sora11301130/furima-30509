@@ -24,7 +24,8 @@ class OrderDestination
     end
   
     def save
-      order = Order.create(item_id: item_id, user_id: user_id)
+      binding.pry
+      order = Order.create!(item_id: item_id, user_id: user_id)
       SendingDestination.create(post_code: post_code, prefecture_code_id: prefecture_code_id, city: city, house_number: house_number, build_number: build_number, phone_number: phone_number, order_id: order.id)
     end
 
