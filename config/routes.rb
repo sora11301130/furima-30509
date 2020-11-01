@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'items#index'
   resources :items do
     # resources :messages, only: :create
+    resources :orders, only: [:index, :create]
   end
   
 end
