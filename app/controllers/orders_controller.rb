@@ -5,9 +5,6 @@ class OrdersController < ApplicationController
   def index
     @order = Order.new
     @order_destination = OrderDestination.new
-    if @order_item.order 
-      redirect_to root_path
-    end
   end
 
 
@@ -18,8 +15,6 @@ class OrdersController < ApplicationController
       @order_destination.save
       return redirect_to root_path
     else
-      @order_item = Item.find(params[:item_id])
-
       render action: :index
     end
     
@@ -42,7 +37,7 @@ class OrdersController < ApplicationController
   end
 
   def order_user
-    return redirect_to root_path if current_user.id == @order_item.user_id
+    return redirect_to root_path if current_user.id == @order_item.user_id || @order_item.order
   end
  
   def set_order

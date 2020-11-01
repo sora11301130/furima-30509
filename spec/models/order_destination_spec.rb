@@ -51,7 +51,7 @@ RSpec.describe OrderDestination, type: :model do
       expect(@order_destination.errors.full_messages).to include("Post code 不正な値が入っています")
      end
 
-     it '電話番号が11桁以上の場合保存できないこと' do
+     it '電話番号が12桁以上の場合保存できないこと' do
       @order_destination.phone_number = "111111111111"
       @order_destination.valid?
       expect(@order_destination.errors.full_messages).to include("Phone number 不正な値が入っています")
