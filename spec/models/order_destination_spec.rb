@@ -64,7 +64,7 @@ RSpec.describe OrderDestination, type: :model do
      end
 
      it '都道府県は1以外でないと登録できないこと' do
-      @order_destination.prefecture_code_id = "1"
+      @order_destination.prefecture_code_id = {1}
       @order_destination.valid?
       expect(@order_destination.errors.full_messages).to include("Prefecture code 不正な値が入っています")
      end
