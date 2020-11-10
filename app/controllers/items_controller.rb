@@ -20,6 +20,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @message = Message.new
+    @messages = @item.messages.includes(:user).order("created_at DESC")
   end
 
   def edit
